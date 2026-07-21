@@ -23,27 +23,16 @@ export const Header = () => {
         </Link>
         
         {/* Menu Desktop */}
-        <nav className="hidden md:flex gap-8 items-center text-sm font-bold uppercase tracking-widest text-brand-white">
-          <Link to="/" className="hover:text-brand-yellow transition-colors relative group">
-            Início
-            <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-brand-yellow transition-all group-hover:w-full"></span>
-          </Link>
-          <Link to="/sobre" className="hover:text-brand-yellow transition-colors relative group">
-            Sobre
-            <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-brand-yellow transition-all group-hover:w-full"></span>
-          </Link>
-          <Link to="/servicos" className="hover:text-brand-yellow transition-colors relative group">
-            Serviços
-            <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-brand-yellow transition-all group-hover:w-full"></span>
-          </Link>
-          <Link to="/metodo" className="hover:text-brand-yellow transition-colors relative group">
-            Método
-            <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-brand-yellow transition-all group-hover:w-full"></span>
-          </Link>
-          <Link to="/contato" className="bg-brand-white text-black px-6 py-2 hover:bg-brand-yellow transition-colors">
-            Fale Comigo
-          </Link>
+        <nav className="hidden lg:flex space-x-8 text-sm font-semibold uppercase tracking-widest text-gray-300">
+          <Link to="/" className="hover:text-brand-yellow transition-colors">Home</Link>
+          <Link to="/sobre" className="hover:text-brand-yellow transition-colors">Sobre</Link>
+          <Link to="/servicos" className="hover:text-brand-yellow transition-colors">Serviços</Link>
+          <Link to="/metodo" className="hover:text-brand-yellow transition-colors">Método</Link>
+          <Link to="/contato" className="hover:text-brand-yellow transition-colors">Contato</Link>
         </nav>
+        <Link to="/contato" className="hidden md:block bg-brand-yellow text-black px-6 py-3 font-bold hover:bg-brand-yellowLight transition-colors uppercase tracking-wider text-sm">
+          Fale Comigo
+        </Link>
 
         {/* Botão Mobile */}
         <button 
@@ -58,10 +47,11 @@ export const Header = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-[73px] bg-[#0d0d0d] z-40 flex flex-col items-center pt-10 md:hidden border-t border-brand-gray/20">
           <nav className="flex flex-col gap-8 items-center text-lg font-bold uppercase tracking-widest text-brand-white w-full px-6">
-            <Link to="/" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Início</Link>
+            <Link to="/" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Home</Link>
             <Link to="/sobre" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Sobre</Link>
             <Link to="/servicos" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Serviços</Link>
             <Link to="/metodo" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Método</Link>
+            <Link to="/contato" className="hover:text-brand-yellow transition-colors w-full text-center py-4 border-b border-brand-gray/10">Contato</Link>
             <Link to="/contato" className="bg-brand-yellow text-black px-6 py-4 mt-4 w-full text-center rounded-sm">Fale Comigo</Link>
           </nav>
         </div>
