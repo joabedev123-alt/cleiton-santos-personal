@@ -48,7 +48,7 @@ export const Contato = () => {
         {/* Informações de Contato Direto */}
         <div className="space-y-12 flex flex-col justify-center">
           <div className="mb-6 flex justify-start">
-            <img src="/logo01.png" alt="Cleiton Santos Logo" className="h-24 w-auto object-contain" />
+            <img src="/logo-final.png" alt="Cleiton Santos Logo" className="h-24 w-auto object-contain" />
           </div>
           <div className="space-y-6">
             <h3 className="text-2xl font-heading text-brand-white uppercase tracking-wider border-b border-brand-gray/30 pb-4">

@@ -10,7 +10,7 @@ export const Footer = () => {
           {/* Logo e Resumo */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <Link to="/" className="flex items-center gap-4">
-              <img src="/logo01.png" alt="Logo Cleiton Santos" className="h-16 w-auto object-contain" />
+              <img src="/logo-final.png" alt="Logo Cleiton Santos" className="h-16 w-auto object-contain" />
               <div className="text-2xl font-heading text-brand-white uppercase tracking-wider hidden sm:block">
                 Cleiton <span className="text-brand-yellow">Santos</span>
               </div>
