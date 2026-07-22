@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
 import { HeartPulse, ShieldCheck, Activity, UserCheck } from 'lucide-react';
 
@@ -111,14 +112,23 @@ export const Servicos = () => {
               </div>
             </div>
 
-            <a 
-              href={getWhatsAppLink(SERVICE_MESSAGES.idosos)} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-block bg-brand-yellow text-black font-bold uppercase px-8 py-4 hover:bg-brand-yellowLight transition-colors text-sm tracking-widest shadow-lg"
-            >
-              Agendar Avaliação para Idosos 50+
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Link 
+                to="/treino-idosos"
+                className="w-full sm:w-auto text-center bg-brand-yellow text-black font-bold uppercase px-8 py-4 hover:bg-brand-yellowLight transition-colors text-sm tracking-widest shadow-lg rounded-sm"
+              >
+                Conhecer Página Dedicada Treino 50+
+              </Link>
+
+              <a 
+                href={getWhatsAppLink(SERVICE_MESSAGES.idosos)} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full sm:w-auto text-center bg-transparent border border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-black font-bold uppercase px-8 py-4 transition-colors text-sm tracking-widest rounded-sm"
+              >
+                Agendar via WhatsApp
+              </a>
+            </div>
           </div>
 
           <div className="lg:w-1/3 flex justify-center">

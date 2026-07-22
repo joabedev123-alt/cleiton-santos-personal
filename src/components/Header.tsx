@@ -66,10 +66,11 @@ export const Header = () => {
         </Link>
         
         {/* Menu Desktop */}
-        <nav className="hidden lg:flex space-x-8 text-sm font-semibold uppercase tracking-widest text-gray-300">
+        <nav className="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest text-gray-300">
           <Link to="/" className="hover:text-brand-yellow transition-colors">Home</Link>
           <Link to="/sobre" className="hover:text-brand-yellow transition-colors">Sobre</Link>
           <Link to="/servicos" className="hover:text-brand-yellow transition-colors">Serviços</Link>
+          <Link to="/treino-idosos" className="hover:text-brand-yellow transition-colors text-brand-yellow">Treino 50+</Link>
           <Link to="/metodo" className="hover:text-brand-yellow transition-colors">Método</Link>
           <Link to="/contato" className="hover:text-brand-yellow transition-colors">Contato</Link>
         </nav>
