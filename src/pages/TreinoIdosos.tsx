@@ -173,10 +173,10 @@ export const TreinoIdosos = () => {
   ];
 
   return (
-    <div className="py-20 md:py-24 container mx-auto px-4 sm:px-6">
+    <div className="py-16 md:py-24 container mx-auto px-4 sm:px-6">
       
       {/* 1. HERO SECTION DEDICADA 50+ COM FOTO REAL */}
-      <section className="mb-20 bg-gradient-to-br from-[#181818] via-[#111111] to-[#0a0a0a] border-2 border-brand-yellow/50 p-6 sm:p-10 md:p-16 rounded-sm shadow-2xl relative overflow-hidden">
+      <section className="mb-14 sm:mb-20 bg-gradient-to-br from-[#181818] via-[#111111] to-[#0a0a0a] border-2 border-brand-yellow/50 p-5 sm:p-10 md:p-16 rounded-sm shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
@@ -190,7 +190,7 @@ export const TreinoIdosos = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading text-brand-white uppercase mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading text-brand-white uppercase mb-4 sm:mb-6 leading-tight">
               Treino para Idosos <span className="text-brand-yellow">50+ & Longevidade</span>
             </h1>
 
@@ -403,12 +403,12 @@ export const TreinoIdosos = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {videosIdosos.map((video) => (
             <div 
               key={video.id}
               onClick={() => setActiveMediaModal({ type: 'video', src: video.videoSrc, title: video.title })}
-              className="relative aspect-[3/4] sm:aspect-square rounded-sm overflow-hidden border border-brand-yellow/30 group cursor-pointer bg-black shadow-xl"
+              className="relative aspect-square rounded-sm overflow-hidden border border-brand-yellow/30 group cursor-pointer bg-black shadow-xl"
             >
               <img 
                 src={video.thumb} 
@@ -485,10 +485,10 @@ export const TreinoIdosos = () => {
 
       {/* MEDIA MODAL CONTAINER PARA FOTOS E VÍDEOS */}
       {activeMediaModal && (
-        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
           <button 
             onClick={() => setActiveMediaModal(null)}
-            className="absolute top-4 right-4 bg-brand-yellow/20 text-brand-yellow hover:bg-brand-yellow hover:text-black p-3 rounded-full transition-all focus:outline-none z-50"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-brand-yellow/20 text-brand-yellow hover:bg-brand-yellow hover:text-black p-2.5 sm:p-3 rounded-full transition-all focus:outline-none z-50 touch-manipulation"
             aria-label="Fechar Modal"
           >
             <X size={28} />

@@ -49,14 +49,14 @@ export const Servicos = () => {
   ];
 
   return (
-    <div className="py-24 container mx-auto px-6">
+    <div className="py-16 md:py-24 container mx-auto px-4 sm:px-6">
       
       {/* Cabeçalho */}
       <div className="text-center mb-16">
-        <h1 className="text-5xl md:text-7xl font-heading text-brand-white uppercase mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading text-brand-white uppercase mb-4">
           Serviços <span className="text-brand-yellow">Premium</span>
         </h1>
-        <p className="text-gray-400 text-lg max-w-xl mx-auto">
+        <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl mx-auto">
           Atendimento presencial em {CONTACT_INFO.location} e consultoria online.
         </p>
       </div>
@@ -64,14 +64,14 @@ export const Servicos = () => {
       {/* LISTA COMPLETA DE SERVIÇOS */}
       <div className="space-y-12">
         {servicos.map((servico, i) => (
-          <div key={i} className="bg-[#111111] border border-brand-gray/20 p-8 md:p-12 lg:w-3/4 mx-auto hover:border-brand-yellow/30 transition-colors rounded-sm">
-            <h2 className="text-3xl font-heading text-brand-white uppercase mb-4">{servico.title}</h2>
+          <div key={i} className="bg-[#111111] border border-brand-gray/20 p-5 sm:p-8 md:p-12 lg:w-3/4 mx-auto hover:border-brand-yellow/30 transition-colors rounded-sm">
+            <h2 className="text-2xl sm:text-3xl font-heading text-brand-white uppercase mb-3 sm:mb-4">{servico.title}</h2>
             <div className="mb-4">
               <span className="bg-brand-yellow/10 text-brand-yellow px-3 py-1 text-xs font-bold uppercase tracking-widest rounded-sm">
                 Indicado para: {servico.indicacao}
               </span>
             </div>
-            <p className="text-gray-400 text-lg mb-8">{servico.desc}</p>
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">{servico.desc}</p>
             <p className="text-sm text-gray-500 italic mb-6">Valores e disponibilidade sob consulta.</p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4">

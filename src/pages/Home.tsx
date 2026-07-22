@@ -10,12 +10,12 @@ export const Home = () => {
     <>
       {/* 1. HERO PRINCIPAL */}
       <section id="home" className="relative min-h-[85vh] flex items-center bg-[#0d0d0d] overflow-hidden">
-        <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 h-full z-10 relative">
+        <div className="container mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 h-full z-10 relative">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center space-y-6 pt-10 pb-20 lg:py-0 relative z-20 pr-10"
+            className="flex flex-col justify-center space-y-5 sm:space-y-6 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:py-0 relative z-20 pr-2 sm:pr-4 lg:pr-10"
           >
             <div className="flex items-center gap-2">
               <span className="text-brand-yellow font-bold tracking-[0.2em] text-sm uppercase">
@@ -26,14 +26,14 @@ export const Home = () => {
                 <MapPin size={14} className="text-brand-yellow" /> {CONTACT_INFO.location}
               </span>
             </div>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading leading-[0.9] text-brand-white uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-heading leading-[0.9] text-brand-white uppercase">
               Construa sua <br/>
               <span className="text-brand-yellow">Melhor Versão</span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-md">
+            <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-md">
               Treinamento individualizado para quem busca mais força, desempenho, saúde e resultados consistentes com acompanhamento profissional em {CONTACT_INFO.location}.
             </p>
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
+            <div className="pt-2 sm:pt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <a 
                 href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
                 target="_blank" 
