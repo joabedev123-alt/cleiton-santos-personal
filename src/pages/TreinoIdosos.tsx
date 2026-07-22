@@ -258,12 +258,13 @@ export const TreinoIdosos = () => {
 
       {/* MEDIA MODAL CONTAINER */}
       {activeMediaModal && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
           <button 
             onClick={() => setActiveMediaModal(null)}
-            className="absolute top-6 right-6 text-white hover:text-brand-yellow text-3xl focus:outline-none"
+            className="absolute top-4 right-4 bg-brand-yellow/20 text-brand-yellow hover:bg-brand-yellow hover:text-black p-3 rounded-full transition-all focus:outline-none z-50"
+            aria-label="Fechar Modal"
           >
-            <X size={32} />
+            <X size={28} />
           </button>
           
           <div className="max-w-4xl w-full flex flex-col items-center justify-center">

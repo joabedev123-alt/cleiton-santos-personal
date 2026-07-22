@@ -33,16 +33,16 @@ export const Home = () => {
             <p className="text-gray-400 text-lg max-w-md">
               Treinamento individualizado para quem busca mais força, desempenho, saúde e resultados consistentes com acompanhamento profissional em {CONTACT_INFO.location}.
             </p>
-            <div className="pt-4 flex gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <a 
                 href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-brand-yellow text-black px-8 py-4 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-sm rounded-sm"
+                className="bg-brand-yellow text-black px-8 py-4 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-sm rounded-sm text-center"
               >
                 Quero Começar
               </a>
-              <Link to="/metodo" className="border border-brand-gray text-brand-white px-8 py-4 font-bold hover:bg-brand-grayDark transition-all uppercase tracking-wider text-sm rounded-sm">
+              <Link to="/metodo" className="border border-brand-gray text-brand-white px-8 py-4 font-bold hover:bg-brand-grayDark transition-all uppercase tracking-wider text-sm rounded-sm text-center">
                 Conhecer o Método
               </Link>
             </div>

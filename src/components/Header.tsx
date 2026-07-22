@@ -16,6 +16,18 @@ export const Header = () => {
     setIsLangOpen(false);
   }, [location.pathname]);
 
+  // Trava a rolagem do body quando o menu mobile está aberto
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   // Fecha dropdown de idioma ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -134,7 +146,7 @@ export const Header = () => {
 
       {/* Menu Mobile Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[73px] bg-[#0d0d0d] z-40 flex flex-col items-center pt-6 md:hidden border-t border-brand-gray/20">
+        <div className="fixed inset-0 top-[73px] bg-[#0d0d0d] z-40 flex flex-col items-center pt-6 pb-12 md:hidden border-t border-brand-gray/20 overflow-y-auto max-h-[calc(100vh-73px)]">
           
           {/* Seletor de Idiomas no Mobile */}
           <div className="flex items-center gap-2 mb-6 bg-[#161616] p-2 border border-brand-gray/20 rounded-sm w-[90%] justify-center">
