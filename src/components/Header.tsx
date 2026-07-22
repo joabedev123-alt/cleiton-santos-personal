@@ -62,7 +62,17 @@ export const Header = () => {
     }
   };
 
-  const activeLang = languages.find(l => l.code === currentLang) || languages[0];
+  const isActive = (path: string) => {
+    return location.pathname === path 
+      ? 'text-brand-yellow font-bold border-b-2 border-brand-yellow pb-0.5' 
+      : 'text-gray-300 hover:text-brand-yellow transition-colors';
+  };
+
+  const isMobileActive = (path: string) => {
+    return location.pathname === path 
+      ? 'text-brand-yellow font-bold bg-brand-yellow/10' 
+      : 'text-brand-white hover:text-brand-yellow transition-colors';
+  };
 
   return (
     <>
@@ -79,12 +89,12 @@ export const Header = () => {
         
         {/* Menu Desktop */}
         <nav className="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest text-gray-300">
-          <Link to="/" className="hover:text-brand-yellow transition-colors">Home</Link>
-          <Link to="/sobre" className="hover:text-brand-yellow transition-colors">Sobre</Link>
-          <Link to="/servicos" className="hover:text-brand-yellow transition-colors">Serviços</Link>
-          <Link to="/treino-idosos" className="hover:text-brand-yellow transition-colors text-brand-yellow">Treino 50+</Link>
-          <Link to="/metodo" className="hover:text-brand-yellow transition-colors">Método</Link>
-          <Link to="/contato" className="hover:text-brand-yellow transition-colors">Contato</Link>
+          <Link to="/" className={isActive('/')}>Home</Link>
+          <Link to="/sobre" className={isActive('/sobre')}>Sobre</Link>
+          <Link to="/servicos" className={isActive('/servicos')}>Serviços</Link>
+          <Link to="/treino-idosos" className={isActive('/treino-idosos')}>Treino 50+</Link>
+          <Link to="/metodo" className={isActive('/metodo')}>Método</Link>
+          <Link to="/contato" className={isActive('/contato')}>Contato</Link>
         </nav>
 
         {/* CTA & Botão Tradutor */}
@@ -164,13 +174,13 @@ export const Header = () => {
             ))}
           </div>
 
-          <nav className="flex flex-col gap-6 items-center text-lg font-bold uppercase tracking-widest text-brand-white w-full px-6">
-            <Link to="/" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Home</Link>
-            <Link to="/sobre" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Sobre</Link>
-            <Link to="/servicos" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Serviços</Link>
-            <Link to="/treino-idosos" className="hover:text-brand-yellow transition-colors text-brand-yellow w-full text-center py-3 border-b border-brand-gray/10">Treino 50+</Link>
-            <Link to="/metodo" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Método</Link>
-            <Link to="/contato" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Contato</Link>
+          <nav className="flex flex-col gap-4 items-center text-lg font-bold uppercase tracking-widest text-brand-white w-full px-6">
+            <Link to="/" className={`${isMobileActive('/')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Home</Link>
+            <Link to="/sobre" className={`${isMobileActive('/sobre')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Sobre</Link>
+            <Link to="/servicos" className={`${isMobileActive('/servicos')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Serviços</Link>
+            <Link to="/treino-idosos" className={`${isMobileActive('/treino-idosos')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Treino 50+</Link>
+            <Link to="/metodo" className={`${isMobileActive('/metodo')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Método</Link>
+            <Link to="/contato" className={`${isMobileActive('/contato')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Contato</Link>
             
             <a 
               href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
