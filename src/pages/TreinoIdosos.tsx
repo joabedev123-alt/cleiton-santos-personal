@@ -49,43 +49,126 @@ export const TreinoIdosos = () => {
     }
   ];
 
-  // Lista de Vídeos Reais MP4 da Pasta cleiton001
+  // Lista Completa de TODOS os 17 Vídeos Reais da Pasta cleiton 001
   const videosIdosos = [
     { 
-      title: "Treino Funcional de Equilíbrio & Postura", 
-      desc: "Exercícios práticos de estabilidade e coordenação para a longevidade.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.00.mp4", 
+      id: 1, 
+      title: "Treino Funcional 01 - Estabilidade & Postura", 
+      desc: "Exercícios práticos de postura e estabilidade funcional.", 
+      videoSrc: "/videos/v1.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
     },
     { 
-      title: "Fortalecimento Seguro de Membros Inferiores", 
-      desc: "Execução técnica controlada para reforço articular de joelhos e quadril.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.04.mp4", 
+      id: 2, 
+      title: "Treino Funcional 02 - Mobilidade Articular", 
+      desc: "Execução orientada para preservação de quadril e joelhos.", 
+      videoSrc: "/videos/v2.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54 (1).jpeg" 
     },
     { 
-      title: "Mobilidade e Prevenção de Dores Lombares", 
-      desc: "Exercícios educativos focados no alívio de dores nas costas.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.13.mp4", 
+      id: 3, 
+      title: "Treino Funcional 03 - Prevenção de Dores Lombares", 
+      desc: "Técnicas educativas focadas no alívio de dores nas costas.", 
+      videoSrc: "/videos/v3.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.25.55.jpeg" 
     },
     { 
-      title: "Ganho de Autonomia & Vitalidade Diária", 
-      desc: "Padrão de movimento funcional seguro para o dia a dia.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.21.mp4", 
+      id: 4, 
+      title: "Treino Funcional 04 - Fortalecimento Muscular", 
+      desc: "Estímulo controlado de força funcional.", 
+      videoSrc: "/videos/v4.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.26.jpeg" 
     },
     { 
-      title: "Controle Biomecânico & Força", 
-      desc: "Treino resistido adaptado para a manutenção da massa magra.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.52.mp4", 
+      id: 5, 
+      title: "Treino Funcional 05 - Equilíbrio Corporal", 
+      desc: "Trabalho proprioceptivo de prevenção de quedas.", 
+      videoSrc: "/videos/v5.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.20.jpeg" 
     },
     { 
-      title: "Condicionamento e Flexibilidade 50+", 
-      desc: "Alongamento e estímulo cardiovascular de baixo impacto.", 
-      videoSrc: "/images/cleiton001/videos/WhatsApp Video 2026-07-21 at 09.36.56.mp4", 
+      id: 6, 
+      title: "Treino Funcional 06 - Mobilidade de Tronco", 
+      desc: "Movimentos adaptados para ganho de flexibilidade.", 
+      videoSrc: "/videos/v6.mp4", 
       thumb: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24 (1).jpeg" 
+    },
+    { 
+      id: 7, 
+      title: "Treino Funcional 07 - Fortalecimento de Membros", 
+      desc: "Recuperação de massa muscular e independência.", 
+      videoSrc: "/videos/v7.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54.jpeg" 
+    },
+    { 
+      id: 8, 
+      title: "Treino Funcional 08 - Correção Postural", 
+      desc: "Alinhamento das articulações e marcha.", 
+      videoSrc: "/videos/v8.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24.jpeg" 
+    },
+    { 
+      id: 9, 
+      title: "Treino Funcional 09 - Vitalidade & Disposição", 
+      desc: "Estímulo metabólico seguro para o dia a dia.", 
+      videoSrc: "/videos/v9.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
+    },
+    { 
+      id: 10, 
+      title: "Treino Funcional 10 - Amplitude de Movimento", 
+      desc: "Exercícios com apoio e acompanhamento individual.", 
+      videoSrc: "/videos/v10.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54 (1).jpeg" 
+    },
+    { 
+      id: 11, 
+      title: "Treino Funcional 11 - Controle Biomecânico", 
+      desc: "Adaptação precisa de carga e ritmo.", 
+      videoSrc: "/videos/v11.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.25.55.jpeg" 
+    },
+    { 
+      id: 12, 
+      title: "Treino Funcional 12 - Equilíbrio Avançado", 
+      desc: "Foco na prevenção de perdas de estabilidade.", 
+      videoSrc: "/videos/v12.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.26.jpeg" 
+    },
+    { 
+      id: 13, 
+      title: "Treino Funcional 13 - Fortalecimento de Joelho", 
+      desc: "Preservação da cartilagem e cartilagem articular.", 
+      videoSrc: "/videos/v13.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.20.jpeg" 
+    },
+    { 
+      id: 14, 
+      title: "Treino Funcional 14 - Resposta Reflexa", 
+      desc: "Exercícios dinâmicos de coordenação.", 
+      videoSrc: "/videos/v14.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24 (1).jpeg" 
+    },
+    { 
+      id: 15, 
+      title: "Treino Funcional 15 - Autonomia & Caminhada", 
+      desc: "Melhora da caminhada diária e rotina física.", 
+      videoSrc: "/videos/v15.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54.jpeg" 
+    },
+    { 
+      id: 16, 
+      title: "Treino Funcional 16 - Acompanhamento Presencial", 
+      desc: "Sessão individualizada ministrada em Riverview FL.", 
+      videoSrc: "/videos/v16.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24.jpeg" 
+    },
+    { 
+      id: 17, 
+      title: "Treino Funcional 17 - Longevidade Ativa", 
+      desc: "Resultado final de vitalidade e bem-estar constante.", 
+      videoSrc: "/videos/v17.mp4", 
+      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
     }
   ];
 
@@ -126,10 +209,10 @@ export const TreinoIdosos = () => {
               </a>
 
               <a 
-                href="#galeria-fotos" 
+                href="#secao-videos" 
                 className="w-full sm:w-auto text-center bg-transparent border border-brand-gray/40 text-gray-300 hover:border-brand-yellow hover:text-brand-yellow font-bold uppercase px-8 py-4 transition-colors text-sm tracking-widest rounded-sm"
               >
-                Ver Galeria Cleiton001
+                Ver Vídeos Cleiton 001 (17)
               </a>
             </div>
           </div>
@@ -237,7 +320,7 @@ export const TreinoIdosos = () => {
         <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4 text-center md:text-left">
           <div>
             <div className="flex items-center justify-center md:justify-start gap-2 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-1">
-              <ImageIcon size={16} /> Galeria Cleiton001
+              <ImageIcon size={16} /> Fotos Cleiton 001
             </div>
             <h2 className="text-3xl sm:text-4xl font-heading text-brand-white uppercase">
               Fotos Reais dos <span className="text-brand-yellow">Treinos 50+</span>
@@ -248,7 +331,7 @@ export const TreinoIdosos = () => {
           </p>
         </div>
 
-        {/* Grid de 8 Fotos Reais */}
+        {/* Grid de Fotos Reais */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {fotosIdosos.map((foto, idx) => (
             <div 
@@ -279,24 +362,24 @@ export const TreinoIdosos = () => {
         </div>
       </section>
 
-      {/* 4. SEÇÃO DEMONSTRAÇÕES EM VÍDEO REAIS DA PASTA CLEITON001 */}
-      <section className="mb-24 bg-[#111111] border border-brand-gray/20 p-6 sm:p-10 md:p-12 rounded-sm">
+      {/* 4. SEÇÃO DEMONSTRAÇÕES EM VÍDEO REAIS DA PASTA CLEITON 001 (17 VÍDEOS) */}
+      <section id="secao-videos" className="mb-24 bg-[#111111] border border-brand-gray/20 p-6 sm:p-10 md:p-12 rounded-sm">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="flex items-center justify-center gap-2 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-1">
-            <Video size={16} /> Vídeos Cleiton001
+            <Video size={16} /> Vídeos Reais (17) Pasta Cleiton 001
           </div>
           <h2 className="text-3xl sm:text-4xl font-heading text-brand-white uppercase mb-2">
             Demonstrações em Vídeo das Aulas
           </h2>
           <p className="text-gray-400 text-sm">
-            Assista à aplicação prática das técnicas de mobilidade, equilíbrio e exercícios educativos para a melhor idade.
+            Assista a todos os 17 vídeos originais da pasta cleiton 001 com a aplicação prática das técnicas de mobilidade, equilíbrio e exercícios de força.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {videosIdosos.map((video, idx) => (
+          {videosIdosos.map((video) => (
             <div 
-              key={idx}
+              key={video.id}
               onClick={() => setActiveMediaModal({ type: 'video', src: video.videoSrc, title: video.title })}
               className="relative aspect-[3/4] sm:aspect-square rounded-sm overflow-hidden border border-brand-yellow/30 group cursor-pointer bg-black shadow-xl"
             >
@@ -306,8 +389,8 @@ export const TreinoIdosos = () => {
                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col items-center justify-between p-4 text-center">
-                <span className="bg-brand-yellow text-black text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-sm tracking-wider self-end">
-                  Vídeo Real Cleiton001
+                <span className="bg-brand-yellow text-black text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-sm tracking-wider self-end shadow-md">
+                  Vídeo {video.id} / 17
                 </span>
                 
                 <div className="w-14 h-14 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition-transform">
