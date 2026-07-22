@@ -217,10 +217,10 @@ export const TreinoIdosos = () => {
             </div>
           </div>
 
-          {/* Destaque 50+ Card com Vídeo Real WhatsApp Video 2026-07-21 at 09.37.21 */}
+          {/* Destaque 50+ Card com Vídeo Real WhatsApp Video 2026-07-21 at 09.47.29 */}
           <div className="lg:w-5/12 flex justify-center w-full">
             <div 
-              onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v13.mp4', title: 'Cleiton Santos Atendimento 50+ (WhatsApp Video 09.37.21)' })}
+              onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v17.mp4', title: 'Cleiton Santos Atendimento 50+ (WhatsApp Video 09.47.29)' })}
               className="w-full h-80 sm:h-96 rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black cursor-pointer"
             >
               <img 
@@ -242,7 +242,7 @@ export const TreinoIdosos = () => {
                   <span className="text-4xl font-heading text-brand-yellow mb-0.5 block drop-shadow-md">50+</span>
                   <h3 className="font-heading text-xl uppercase text-white mb-1 tracking-wider">Cleiton Santos Atendimento 50+</h3>
                   <p className="text-[11px] text-gray-200 italic max-w-xs mx-auto leading-relaxed">
-                    Clique para assistir ao vídeo do atendimento (WhatsApp Video 09.37.21)
+                    Clique para assistir ao vídeo do atendimento (WhatsApp Video 09.47.29)
                   </p>
                 </div>
               </div>
