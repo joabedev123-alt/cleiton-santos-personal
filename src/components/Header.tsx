@@ -57,7 +57,7 @@ export const Header = () => {
       {/* HEADER NAVBAR */}
       <header className="w-full bg-[#0d0d0d] z-50 py-4 px-6 md:px-10 flex justify-between items-center border-b border-brand-gray/10 sticky top-0">
         
-        <!-- Logo & Marca -->
+        {/* Logo & Marca */}
         <Link to="/" className="flex items-center gap-4">
           <img src="/logo-final.png" alt="Logo Cleiton Santos" className="h-14 md:h-20 w-auto object-contain" />
           <div className="text-2xl md:text-3xl font-heading text-brand-white uppercase tracking-wider hidden sm:block">
@@ -74,7 +74,7 @@ export const Header = () => {
           <Link to="/contato" className="hover:text-brand-yellow transition-colors">Contato</Link>
         </nav>
 
-        <!-- CTA & Botão Tradutor -->
+        {/* CTA & Botão Tradutor */}
         <div className="hidden md:flex items-center gap-4">
           
           {/* Botão Tradutor de Idioma */}
@@ -111,7 +111,7 @@ export const Header = () => {
             )}
           </div>
 
-          <!-- Botão CTA Fale Comigo -->
+          {/* Botão CTA Fale Comigo */}
           <a 
             href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
             target="_blank" 
