@@ -156,6 +156,7 @@ export const Header = () => {
             <Link to="/" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Home</Link>
             <Link to="/sobre" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Sobre</Link>
             <Link to="/servicos" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Serviços</Link>
+            <Link to="/treino-idosos" className="hover:text-brand-yellow transition-colors text-brand-yellow w-full text-center py-3 border-b border-brand-gray/10">Treino 50+</Link>
             <Link to="/metodo" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Método</Link>
             <Link to="/contato" className="hover:text-brand-yellow transition-colors w-full text-center py-3 border-b border-brand-gray/10">Contato</Link>
             
