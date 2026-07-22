@@ -62,17 +62,10 @@ export const Header = () => {
     }
   };
 
-  const isActive = (path: string) => {
-    return location.pathname === path 
-      ? 'text-brand-yellow font-bold border-b-2 border-brand-yellow pb-0.5' 
-      : 'text-gray-300 hover:text-brand-yellow transition-colors';
-  };
+  const activeLang = languages.find(l => l.code === currentLang) || languages[0];
 
-  const isMobileActive = (path: string) => {
-    return location.pathname === path 
-      ? 'text-brand-yellow font-bold bg-brand-yellow/10' 
-      : 'text-brand-white hover:text-brand-yellow transition-colors';
-  };
+  // Helper para verificar se a rota está ativa
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
@@ -87,14 +80,44 @@ export const Header = () => {
           </div>
         </Link>
         
-        {/* Menu Desktop */}
-        <nav className="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest text-gray-300">
-          <Link to="/" className={isActive('/')}>Home</Link>
-          <Link to="/sobre" className={isActive('/sobre')}>Sobre</Link>
-          <Link to="/servicos" className={isActive('/servicos')}>Serviços</Link>
-          <Link to="/treino-idosos" className={isActive('/treino-idosos')}>Treino 50+</Link>
-          <Link to="/metodo" className={isActive('/metodo')}>Método</Link>
-          <Link to="/contato" className={isActive('/contato')}>Contato</Link>
+        {/* Menu Desktop com Destaque Dinâmico */}
+        <nav className="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-widest">
+          <Link 
+            to="/" 
+            className={`transition-colors ${isActive('/') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/sobre" 
+            className={`transition-colors ${isActive('/sobre') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Sobre
+          </Link>
+          <Link 
+            to="/servicos" 
+            className={`transition-colors ${isActive('/servicos') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Serviços
+          </Link>
+          <Link 
+            to="/treino-idosos" 
+            className={`transition-colors ${isActive('/treino-idosos') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Treino 50+
+          </Link>
+          <Link 
+            to="/metodo" 
+            className={`transition-colors ${isActive('/metodo') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Método
+          </Link>
+          <Link 
+            to="/contato" 
+            className={`transition-colors ${isActive('/contato') ? 'text-brand-yellow font-bold' : 'text-gray-300 hover:text-brand-yellow'}`}
+          >
+            Contato
+          </Link>
         </nav>
 
         {/* CTA & Botão Tradutor */}
@@ -174,13 +197,55 @@ export const Header = () => {
             ))}
           </div>
 
-          <nav className="flex flex-col gap-4 items-center text-lg font-bold uppercase tracking-widest text-brand-white w-full px-6">
-            <Link to="/" className={`${isMobileActive('/')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Home</Link>
-            <Link to="/sobre" className={`${isMobileActive('/sobre')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Sobre</Link>
-            <Link to="/servicos" className={`${isMobileActive('/servicos')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Serviços</Link>
-            <Link to="/treino-idosos" className={`${isMobileActive('/treino-idosos')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Treino 50+</Link>
-            <Link to="/metodo" className={`${isMobileActive('/metodo')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Método</Link>
-            <Link to="/contato" className={`${isMobileActive('/contato')} w-full text-center py-3 border-b border-brand-gray/10 rounded-sm`}>Contato</Link>
+          <nav className="flex flex-col gap-6 items-center text-lg font-bold uppercase tracking-widest w-full px-6">
+            <Link 
+              to="/" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/sobre" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/sobre') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Sobre
+            </Link>
+            <Link 
+              to="/servicos" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/servicos') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Serviços
+            </Link>
+            <Link 
+              to="/treino-idosos" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/treino-idosos') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Treino 50+
+            </Link>
+            <Link 
+              to="/metodo" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/metodo') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Método
+            </Link>
+            <Link 
+              to="/contato" 
+              className={`w-full text-center py-3 border-b border-brand-gray/10 transition-colors ${
+                isActive('/contato') ? 'text-brand-yellow font-bold' : 'text-brand-white hover:text-brand-yellow'
+              }`}
+            >
+              Contato
+            </Link>
             
             <a 
               href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
