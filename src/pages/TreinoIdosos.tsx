@@ -217,20 +217,34 @@ export const TreinoIdosos = () => {
             </div>
           </div>
 
-          {/* Destaque 50+ Badge Card com Foto Real de Fundo */}
+          {/* Destaque 50+ Card com Vídeo Real WhatsApp Video 2026-07-21 at 09.37.21 */}
           <div className="lg:w-5/12 flex justify-center w-full">
-            <div className="w-full h-80 sm:h-96 rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
+            <div 
+              onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v13.mp4', title: 'Cleiton Santos Atendimento 50+ (WhatsApp Video 09.37.21)' })}
+              className="w-full h-80 sm:h-96 rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black cursor-pointer"
+            >
               <img 
                 src="/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24 (1).jpeg" 
                 alt="Cleiton Santos Atendimento 50+" 
-                className="w-full h-full object-cover object-top opacity-60 group-hover:scale-105 transition-transform duration-700" 
+                className="w-full h-full object-cover object-top opacity-50 group-hover:scale-105 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-end text-center">
-                <span className="text-6xl font-heading text-brand-yellow mb-1 drop-shadow-md">50+</span>
-                <h3 className="font-heading text-2xl uppercase text-white mb-2 tracking-wider">Longevidade Ativa</h3>
-                <p className="text-xs text-gray-200 italic max-w-xs mx-auto leading-relaxed">
-                  "Cuidar do seu corpo hoje é garantir autonomia, vitalidade e alegria para os próximos anos."
-                </p>
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-between text-center">
+                <span className="bg-brand-yellow text-black font-bold uppercase text-[10px] px-3 py-1 tracking-widest rounded-sm self-end shadow-md">
+                  Vídeo Destaque 50+
+                </span>
+
+                <div className="w-16 h-16 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl mx-auto group-hover:scale-110 transition-transform my-auto">
+                  <Play size={28} className="ml-1 fill-black" />
+                </div>
+
+                <div>
+                  <span className="text-4xl font-heading text-brand-yellow mb-0.5 block drop-shadow-md">50+</span>
+                  <h3 className="font-heading text-xl uppercase text-white mb-1 tracking-wider">Cleiton Santos Atendimento 50+</h3>
+                  <p className="text-[11px] text-gray-200 italic max-w-xs mx-auto leading-relaxed">
+                    Clique para assistir ao vídeo do atendimento (WhatsApp Video 09.37.21)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
