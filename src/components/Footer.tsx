@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
 
 export const Footer = () => {
   return (
@@ -36,9 +37,9 @@ export const Footer = () => {
           <div className="flex flex-col items-center md:items-start space-y-4">
             <h4 className="text-brand-white font-bold uppercase tracking-widest mb-2">Contato</h4>
             <div className="flex flex-col space-y-3 text-gray-400 text-sm">
-              <span className="flex items-center gap-3"><MapPin size={16} className="text-brand-yellow"/> São Paulo, SP</span>
-              <span className="flex items-center gap-3"><Phone size={16} className="text-brand-yellow"/> (11) 99999-9999</span>
-              <span className="flex items-center gap-3"><Mail size={16} className="text-brand-yellow"/> contato@cleitonsantos.com.br</span>
+              <span className="flex items-center gap-3"><MapPin size={16} className="text-brand-yellow"/> {CONTACT_INFO.location}</span>
+              <a href={`tel:${CONTACT_INFO.phoneTel}`} className="flex items-center gap-3 hover:text-brand-yellow transition-colors"><Phone size={16} className="text-brand-yellow"/> {CONTACT_INFO.phoneDisplay}</a>
+              <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-center gap-3 hover:text-brand-yellow transition-colors"><Mail size={16} className="text-brand-yellow"/> {CONTACT_INFO.email}</a>
             </div>
           </div>
 
@@ -57,9 +58,10 @@ export const Footer = () => {
 
       {/* BOTÃO FLUTUANTE DO WHATSAPP */}
       <a 
-        href="https://wa.me/5511999999999" 
+        href={getWhatsAppLink(SERVICE_MESSAGES.default)} 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp"
         className="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-[0_0_20px_rgba(37,211,102,0.5)] transition-all duration-300 flex items-center justify-center group"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="none">

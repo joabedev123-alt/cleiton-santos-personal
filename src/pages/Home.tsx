@@ -1,8 +1,9 @@
 
 import { motion } from 'framer-motion';
-import { Target, Dumbbell, Activity, Users, PlayCircle, Star } from 'lucide-react';
+import { Target, Dumbbell, Activity, Users, PlayCircle, Star, MapPin } from 'lucide-react';
 import { VideoCarousel } from '../components/VideoCarousel';
 import { Link } from 'react-router-dom';
+import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
 
 export const Home = () => {
   return (
@@ -16,20 +17,31 @@ export const Home = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col justify-center space-y-6 pt-10 pb-20 lg:py-0 relative z-20 pr-10"
           >
-            <span className="text-brand-yellow font-bold tracking-[0.2em] text-sm uppercase">
-              Desde 2015
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-brand-yellow font-bold tracking-[0.2em] text-sm uppercase">
+                Desde 2015
+              </span>
+              <span className="text-gray-500">•</span>
+              <span className="text-gray-300 font-medium tracking-wider text-xs uppercase flex items-center gap-1">
+                <MapPin size={14} className="text-brand-yellow" /> {CONTACT_INFO.location}
+              </span>
+            </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading leading-[0.9] text-brand-white uppercase">
               Construa sua <br/>
               <span className="text-brand-yellow">Melhor Versão</span>
             </h1>
             <p className="text-gray-400 text-lg max-w-md">
-              Treinamento individualizado para quem busca mais força, desempenho, saúde e resultados consistentes com acompanhamento profissional.
+              Treinamento individualizado para quem busca mais força, desempenho, saúde e resultados consistentes com acompanhamento profissional em {CONTACT_INFO.location}.
             </p>
             <div className="pt-4 flex gap-4">
-              <Link to="/contato" className="bg-brand-yellow text-black px-8 py-4 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-sm rounded-sm">
+              <a 
+                href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-brand-yellow text-black px-8 py-4 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-sm rounded-sm"
+              >
                 Quero Começar
-              </Link>
+              </a>
               <Link to="/metodo" className="border border-brand-gray text-brand-white px-8 py-4 font-bold hover:bg-brand-grayDark transition-all uppercase tracking-wider text-sm rounded-sm">
                 Conhecer o Método
               </Link>
@@ -281,9 +293,14 @@ export const Home = () => {
             Tenha um plano construído para o seu objetivo e acompanhamento profissional em cada etapa da sua evolução.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contato" className="bg-brand-yellow text-black px-10 py-5 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-lg">
+            <a 
+              href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-brand-yellow text-black px-10 py-5 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-lg"
+            >
               Falar com Cleiton
-            </Link>
+            </a>
             <Link to="/servicos" className="border border-brand-white text-brand-white px-10 py-5 font-bold hover:bg-brand-white hover:text-black transition-all uppercase tracking-wider text-lg">
               Conhecer os Planos
             </Link>

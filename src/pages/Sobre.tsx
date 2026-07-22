@@ -1,16 +1,23 @@
 
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, MapPin } from 'lucide-react';
+import { CONTACT_INFO } from '../utils/contact';
 
 export const Sobre = () => {
   return (
     <div className="py-32 container mx-auto px-6">
+      <div className="flex items-center gap-2 mb-4">
+        <MapPin size={18} className="text-brand-yellow" />
+        <span className="text-brand-yellow font-bold uppercase tracking-widest text-xs">
+          Atendimento em {CONTACT_INFO.location}
+        </span>
+      </div>
       <h1 className="text-5xl md:text-7xl font-heading text-brand-white uppercase mb-12">
         PROFISSIONALISMO, MÉTODO E COMPROMISSO COM A SUA EVOLUÇÃO
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
           <p>
-            Cleiton Santos é Personal Trainer e atua com treinamentos personalizados voltados para força, condicionamento, melhora da composição corporal e qualidade de vida.
+            Cleiton Santos é Personal Trainer com atendimento presencial em <strong className="text-brand-white font-semibold">{CONTACT_INFO.location}</strong> e consultoria online, atuando com treinamentos personalizados voltados para força, condicionamento, melhora da composição corporal e qualidade de vida.
           </p>
           <p>
             Sua trajetória é marcada por um estudo contínuo sobre biomecânica e fisiologia do exercício, garantindo que cada plano de treinamento seja fundamentado na ciência e adaptado à individualidade biológica de cada aluno.
