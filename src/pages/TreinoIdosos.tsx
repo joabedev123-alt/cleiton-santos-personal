@@ -264,20 +264,33 @@ export const TreinoIdosos = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Card com Foto de Exemplo */}
+          {/* Card com Vídeo Real WhatsApp Video 2026-07-21 at 09.36.16 */}
           <div className="lg:col-span-5 h-full">
-            <div className="relative rounded-sm overflow-hidden border border-brand-yellow/40 h-full min-h-[350px] shadow-xl group bg-[#111111]">
+            <div 
+              onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v5.mp4', title: 'Treino de Longevidade Cleiton Santos (WhatsApp Video 09.36.16)' })}
+              className="relative rounded-sm overflow-hidden border border-brand-yellow/40 h-full min-h-[350px] shadow-xl group bg-black cursor-pointer"
+            >
               <img 
                 src="/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
                 alt="Treino de Longevidade Cleiton Santos" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-6 flex flex-col justify-end">
-                <span className="bg-brand-yellow text-black font-bold uppercase text-[10px] px-2.5 py-1 tracking-widest rounded-sm w-max mb-2">
-                  Atendimento Personalizado
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-6 flex flex-col justify-between">
+                <span className="bg-brand-yellow text-black font-bold uppercase text-[10px] px-2.5 py-1 tracking-widest rounded-sm w-max shadow-md">
+                  Vídeo Pilares 50+
                 </span>
-                <h3 className="font-heading text-2xl text-white uppercase">Preservação & Autonomia</h3>
-                <p className="text-xs text-gray-300 mt-1">Sessões adaptadas com acompanhamento próximo em cada movimento.</p>
+
+                <div className="w-16 h-16 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl mx-auto group-hover:scale-110 transition-transform my-auto">
+                  <Play size={28} className="ml-1 fill-black" />
+                </div>
+
+                <div>
+                  <h3 className="font-heading text-2xl text-white uppercase">Preservação & Autonomia</h3>
+                  <p className="text-xs text-gray-200 mt-1 italic">
+                    Clique para assistir à demonstração da metodologia 50+ (WhatsApp Video 09.36.16)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
