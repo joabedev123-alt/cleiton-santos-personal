@@ -14,6 +14,7 @@ export const SERVICE_MESSAGES: Record<string, string> = {
   default: 'Olá, Cleiton! Vim pelo site e gostaria de saber mais sobre o atendimento de personal trainer.',
   general: 'Olá, Cleiton! Gostaria de agendar uma conversa sobre o treinamento personalizado em Riverview FL e Região.',
   presencial: 'Olá, Cleiton! Gostaria de solicitar informações e valores sobre o Personal Presencial em Riverview FL e Região.',
+  idosos: 'Olá, Cleiton! Gostaria de solicitar informações sobre o Treinamento Personalizado para Idosos 50+.',
   dupla: 'Olá, Cleiton! Gostaria de solicitar informações sobre o Treino em Dupla em Riverview FL e Região.',
   preparacao: 'Olá, Cleiton! Gostaria de saber mais sobre a Preparação Física.',
   consultoria: 'Olá, Cleiton! Gostaria de solicitar informações sobre a Consultoria Online.',
