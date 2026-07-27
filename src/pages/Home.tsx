@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Target, Dumbbell, Activity, Users, PlayCircle, Star, MapPin } from 'lucide-react';
+import { Target, Dumbbell, Activity, Users, Star, MapPin } from 'lucide-react';
 import { VideoCarousel } from '../components/VideoCarousel';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
@@ -243,10 +243,8 @@ export const Home = () => {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {['/videos/vid13.mp4', '/videos/vid10.mp4', '/videos/vid12.mp4', '/videos/vid11.mp4'].map((video, i) => (
-              <div key={i} className="bg-[#111111] border border-brand-gray/20 flex items-center justify-center relative group cursor-pointer overflow-hidden aspect-[9/16]">
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors z-10 pointer-events-none"></div>
-                <PlayCircle className="absolute z-20 text-brand-white opacity-50 group-hover:opacity-100 group-hover:text-brand-yellow transition-all pointer-events-none" size={48} />
-                <video src={video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0" />
+              <div key={i} className="bg-black border border-brand-yellow/30 flex items-center justify-center relative rounded-sm overflow-hidden aspect-[9/16] shadow-xl">
+                <video src={video} autoPlay muted loop playsInline className="w-full h-full object-cover z-0" />
               </div>
             ))}
           </div>
