@@ -2,14 +2,17 @@ import { useState, useRef, useEffect } from 'react';
 import { CheckCircle2, MapPin, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { CONTACT_INFO } from '../utils/contact';
 
-interface VideoCardProps {
-  src: string;
-  title: string;
+interface DualVideoBlockProps {
+  video1: string;
+  video2: string;
+  title1: string;
+  title2: string;
 }
 
-const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
+const DualVideoBlock = ({ video1, video2, title1, title2 }: DualVideoBlockProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -17,37 +20,37 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (videoRef.current) {
-            if (entry.isIntersecting) {
-              // Quando o vídeo entra na tela via scroll do usuário
-              videoRef.current.muted = false;
-              setIsMuted(false);
-              const playPromise = videoRef.current.play();
-              if (playPromise !== undefined) {
-                playPromise
-                  .then(() => {
-                    setIsPlaying(true);
-                  })
-                  .catch(() => {
-                    // Fallback se o navegador exigir interação prévia do usuário para áudio
-                    if (videoRef.current) {
-                      videoRef.current.muted = true;
+          if (entry.isIntersecting) {
+            // Quando a seção de vídeo entra na viewport
+            [video1Ref.current, video2Ref.current].forEach((v) => {
+              if (v) {
+                v.muted = false;
+                const p = v.play();
+                if (p !== undefined) {
+                  p.then(() => setIsPlaying(true)).catch(() => {
+                    if (v) {
+                      v.muted = true;
                       setIsMuted(true);
-                      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+                      v.play().then(() => setIsPlaying(true)).catch(() => {});
                     }
                   });
+                }
               }
-            } else {
-              // Quando o vídeo sai da tela (evita 2 áudios ao mesmo tempo)
-              videoRef.current.pause();
-              videoRef.current.muted = true;
-              setIsMuted(true);
-              setIsPlaying(false);
-            }
+            });
+          } else {
+            // Quando sai da viewport
+            [video1Ref.current, video2Ref.current].forEach((v) => {
+              if (v) {
+                v.pause();
+                v.muted = true;
+              }
+            });
+            setIsMuted(true);
+            setIsPlaying(false);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (containerRef.current) {
@@ -60,65 +63,96 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
   }, []);
 
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => setIsPlaying(true)).catch(() => {});
+    const nextPlaying = !isPlaying;
+    [video1Ref.current, video2Ref.current].forEach((v) => {
+      if (v) {
+        if (!nextPlaying) {
+          v.pause();
+        } else {
+          v.play().catch(() => {});
         }
       }
-    }
+    });
+    setIsPlaying(nextPlaying);
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+    const nextMuted = !isMuted;
+    [video1Ref.current, video2Ref.current].forEach((v) => {
+      if (v) {
+        v.muted = nextMuted;
+      }
+    });
+    setIsMuted(nextMuted);
   };
 
   return (
     <div
       ref={containerRef}
-      className="bg-black w-full max-w-[320px] sm:max-w-[360px] mx-auto aspect-[9/16] rounded-sm border-2 border-brand-yellow/30 relative overflow-hidden group shadow-2xl flex flex-col justify-between"
+      className="bg-black w-full max-w-[650px] mx-auto rounded-sm border-2 border-brand-yellow/40 relative overflow-hidden shadow-2xl p-3 sm:p-4 flex flex-col justify-between"
     >
-      <video
-        ref={videoRef}
-        src={src}
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-contain bg-black object-center z-0"
-      />
+      {/* Grade com os 2 Vídeos Lado a Lado */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
+        {/* VÍDEO 1 */}
+        <div className="relative aspect-[9/16] rounded-sm overflow-hidden bg-black border border-brand-yellow/20 group">
+          <video
+            ref={video1Ref}
+            src={video1}
+            loop
+            playsInline
+            className="w-full h-full object-contain bg-black object-center"
+          />
+          <div className="absolute top-2 left-2 z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-yellow bg-black/80 px-2 py-0.5 rounded-sm border border-brand-yellow/30 shadow-md">
+              {title1}
+            </span>
+          </div>
+        </div>
 
-      {/* Header Overlay */}
-      <div className="relative z-10 p-3 bg-gradient-to-b from-black/80 via-black/20 to-transparent flex justify-between items-center pointer-events-none">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-brand-yellow bg-black/70 px-2.5 py-1 rounded-sm border border-brand-yellow/30 shadow-md">
-          {title}
-        </span>
+        {/* VÍDEO 2 */}
+        <div className="relative aspect-[9/16] rounded-sm overflow-hidden bg-black border border-brand-yellow/20 group">
+          <video
+            ref={video2Ref}
+            src={video2}
+            loop
+            playsInline
+            className="w-full h-full object-contain bg-black object-center"
+          />
+          <div className="absolute top-2 left-2 z-10">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-brand-yellow bg-black/80 px-2 py-0.5 rounded-sm border border-brand-yellow/30 shadow-md">
+              {title2}
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Bottom Controls Bar */}
-      <div className="relative z-10 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-center justify-between gap-3">
-        {/* Play/Pause Button */}
-        <button
-          onClick={togglePlay}
-          aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
-          className="bg-brand-yellow text-black p-3 rounded-full hover:scale-110 hover:bg-brand-yellowLight transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
-        >
-          {isPlaying ? <Pause size={20} className="fill-black" /> : <Play size={20} className="fill-black ml-0.5" />}
-        </button>
+      {/* Barra de Controles Unificada */}
+      <div className="relative z-10 p-3 bg-gradient-to-t from-black/95 via-black/80 to-transparent flex items-center justify-between gap-3 border-t border-brand-gray/20 rounded-b-sm">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-white">
+            Demonstrações em Vídeo
+          </span>
+        </div>
 
-        {/* Volume Mute/Unmute Button */}
-        <button
-          onClick={toggleMute}
-          aria-label={isMuted ? "Ativar som" : "Desativar som"}
-          className="bg-black/80 text-white border border-brand-yellow/50 p-3 rounded-full hover:border-brand-yellow hover:text-brand-yellow transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
-        >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-brand-yellow" />}
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Botão Play / Pause Sincronizado */}
+          <button
+            onClick={togglePlay}
+            aria-label={isPlaying ? "Pausar vídeos" : "Reproduzir vídeos"}
+            className="bg-brand-yellow text-black p-2.5 sm:p-3 rounded-full hover:scale-110 hover:bg-brand-yellowLight transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
+          >
+            {isPlaying ? <Pause size={18} className="fill-black" /> : <Play size={18} className="fill-black ml-0.5" />}
+          </button>
+
+          {/* Botão de Som Mute / Unmute Sincronizado */}
+          <button
+            onClick={toggleMute}
+            aria-label={isMuted ? "Ativar som" : "Desativar som"}
+            className="bg-black/80 text-white border border-brand-yellow/50 p-2.5 sm:p-3 rounded-full hover:border-brand-yellow hover:text-brand-yellow transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
+          >
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} className="text-brand-yellow" />}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -127,8 +161,8 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
 export const Sobre = () => {
   return (
     <div className="py-20 md:py-28 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* SEÇÃO PRINCIPAL COM VÍDEO 01 */}
+      <div className="max-w-6xl mx-auto">
+        {/* CABEÇALHO */}
         <div className="flex items-center gap-2 mb-4">
           <MapPin size={18} className="text-brand-yellow" />
           <span className="text-brand-yellow font-bold uppercase tracking-widest text-xs">
@@ -139,8 +173,9 @@ export const Sobre = () => {
           PROFISSIONALISMO, MÉTODO E COMPROMISSO COM A SUA EVOLUÇÃO
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-center">
-          <div className="space-y-6 text-gray-400 text-base md:text-lg leading-relaxed">
+        {/* SEÇÃO PRINCIPAL COM TEXTO E BLOCO UNIFICADO DE 2 VÍDEOS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
+          <div className="lg:col-span-6 space-y-6 text-gray-400 text-base md:text-lg leading-relaxed">
             <p>
               Cleiton Santos é Personal Trainer com atendimento presencial em <strong className="text-brand-white font-semibold">{CONTACT_INFO.location}</strong> e consultoria online, atuando com treinamentos personalizados voltados para força, condicionamento, melhora da composição corporal e qualidade de vida.
             </p>
@@ -157,29 +192,14 @@ export const Sobre = () => {
             </ul>
           </div>
 
-          {/* PRIMEIRO VÍDEO (video01) */}
-          <div className="flex justify-center w-full">
-            <VideoCardWithControls src="/videos/video01.mp4" title="Demonstração 01" />
-          </div>
-        </div>
-
-        {/* SEGUNDA SEÇÃO CENTRALIZADA COM VÍDEO 02 */}
-        <div className="mt-20 sm:mt-24 pt-16 border-t border-brand-gray/20 text-center">
-          <div className="max-w-2xl mx-auto mb-10">
-            <span className="text-brand-yellow font-bold uppercase tracking-widest text-xs mb-2 block">
-              Prática & Metodologia
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading text-brand-white uppercase mb-4">
-              Acompanhamento <span className="text-brand-yellow">Especializado</span>
-            </h2>
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-              Confira mais um registro prático dos treinamentos personalizados e da atenção dedicada a cada detalhe biomecânico.
-            </p>
-          </div>
-
-          {/* SEGUNDO VÍDEO (video02) CENTRALIZADO ABAIXO */}
-          <div className="flex justify-center w-full">
-            <VideoCardWithControls src="/videos/video02.mp4" title="Demonstração 02" />
+          {/* COMPONENTE UNIFICADO DOS 2 VÍDEOS JUNTOS */}
+          <div className="lg:col-span-6 flex justify-center w-full">
+            <DualVideoBlock
+              video1="/videos/video01.mp4"
+              video2="/videos/video02.mp4"
+              title1="Demonstração 01"
+              title2="Demonstração 02"
+            />
           </div>
         </div>
 
