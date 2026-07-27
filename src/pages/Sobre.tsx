@@ -11,9 +11,32 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const formatTime = (timeInSeconds: number) => {
+    if (isNaN(timeInSeconds) || timeInSeconds === 0) return '0:00';
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      setCurrentTime(video.currentTime);
+    };
+
+    const handleLoadedMetadata = () => {
+      setDuration(video.duration);
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -52,6 +75,8 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
     }
 
     return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       observer.disconnect();
     };
   }, []);
@@ -77,6 +102,16 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
     }
   };
 
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
+    if (videoRef.current) {
+      videoRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
+  };
+
+  const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
+
   return (
     <div
       ref={containerRef}
@@ -97,25 +132,54 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
         </span>
       </div>
 
-      {/* Bottom Controls Bar */}
-      <div className="relative z-10 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-center justify-between gap-3">
-        {/* Play/Pause Button */}
-        <button
-          onClick={togglePlay}
-          aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
-          className="bg-brand-yellow text-black p-3 rounded-full hover:scale-110 hover:bg-brand-yellowLight transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
-        >
-          {isPlaying ? <Pause size={20} className="fill-black" /> : <Play size={20} className="fill-black ml-0.5" />}
-        </button>
+      {/* Bottom Controls & Timeline Bar Area */}
+      <div className="relative z-10 p-4 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col gap-2.5">
+        
+        {/* Barra de Progresso do Vídeo (Linha do Tempo) */}
+        <div className="w-full flex items-center gap-2">
+          <span className="text-[10px] font-mono text-gray-300 min-w-[28px]">
+            {formatTime(currentTime)}
+          </span>
+          <div className="relative flex-grow flex items-center">
+            <input
+              type="range"
+              min="0"
+              max={duration || 100}
+              step="0.1"
+              value={currentTime}
+              onChange={handleSeek}
+              className="w-full h-1.5 bg-gray-700/80 rounded-lg appearance-none cursor-pointer accent-brand-yellow focus:outline-none z-10"
+              style={{
+                background: `linear-gradient(to right, #F5B400 ${progressPercentage}%, rgba(55, 65, 81, 0.8) ${progressPercentage}%)`
+              }}
+            />
+          </div>
+          <span className="text-[10px] font-mono text-gray-400 min-w-[28px] text-right">
+            {formatTime(duration)}
+          </span>
+        </div>
 
-        {/* Volume Mute/Unmute Button */}
-        <button
-          onClick={toggleMute}
-          aria-label={isMuted ? "Ativar som" : "Desativar som"}
-          className="bg-black/80 text-white border border-brand-yellow/50 p-3 rounded-full hover:border-brand-yellow hover:text-brand-yellow transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
-        >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-brand-yellow" />}
-        </button>
+        {/* Botões de Ação: Play/Pause e Volume */}
+        <div className="flex items-center justify-between gap-3 pt-1">
+          {/* Play/Pause Button */}
+          <button
+            onClick={togglePlay}
+            aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"}
+            className="bg-brand-yellow text-black p-2.5 rounded-full hover:scale-110 hover:bg-brand-yellowLight transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
+          >
+            {isPlaying ? <Pause size={18} className="fill-black" /> : <Play size={18} className="fill-black ml-0.5" />}
+          </button>
+
+          {/* Volume Mute/Unmute Button */}
+          <button
+            onClick={toggleMute}
+            aria-label={isMuted ? "Ativar som" : "Desativar som"}
+            className="bg-black/80 text-white border border-brand-yellow/50 p-2.5 rounded-full hover:border-brand-yellow hover:text-brand-yellow transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
+          >
+            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} className="text-brand-yellow" />}
+          </button>
+        </div>
+
       </div>
     </div>
   );
