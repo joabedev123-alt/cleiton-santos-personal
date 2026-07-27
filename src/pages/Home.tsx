@@ -18,8 +18,6 @@ export const Home = () => {
             className="flex flex-col justify-center space-y-5 sm:space-y-6 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:py-0 relative z-20 pr-2 sm:pr-4 lg:pr-10"
           >
             <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider">
-              <span className="text-brand-yellow">Desde 2015</span>
-              <span className="text-gray-500">•</span>
               <span className="text-brand-yellow">Desde 2024</span>
               <span className="text-gray-500">•</span>
               <span className="text-gray-300 font-medium tracking-wider text-xs uppercase flex items-center gap-1">
