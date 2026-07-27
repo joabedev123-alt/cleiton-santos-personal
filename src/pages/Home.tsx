@@ -24,16 +24,22 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
     const video = videoRef.current;
     if (!video) return;
 
+    video.muted = false;
+
     const handleTimeUpdate = () => {
       setCurrentTime(video.currentTime);
     };
 
-    const handleLoadedMetadata = () => {
-      setDuration(video.duration);
+    const handleDuration = () => {
+      if (video.duration && !isNaN(video.duration)) {
+        setDuration(video.duration);
+      }
     };
 
     video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('loadedmetadata', handleDuration);
+    video.addEventListener('durationchange', handleDuration);
+    video.addEventListener('loadeddata', handleDuration);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,14 +64,12 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
               }
             } else {
               videoRef.current.pause();
-              videoRef.current.muted = true;
-              setIsMuted(true);
               setIsPlaying(false);
             }
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
 
     if (containerRef.current) {
@@ -74,7 +78,9 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
 
     return () => {
       video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('loadedmetadata', handleDuration);
+      video.removeEventListener('durationchange', handleDuration);
+      video.removeEventListener('loadeddata', handleDuration);
       observer.disconnect();
     };
   }, []);
@@ -111,7 +117,7 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div ref={containerRef} className="w-full max-w-[220px] sm:max-w-[250px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black flex flex-col justify-between">
+    <div ref={containerRef} className="w-full max-w-[240px] sm:max-w-[270px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black flex flex-col justify-between">
       <video 
         ref={videoRef}
         src={src} 
@@ -119,17 +125,17 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
         playsInline 
         className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 z-0" 
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-transparent pointer-events-none z-0" />
       
       {/* Spacer */}
       <div className="relative z-10 p-2" />
 
       {/* Bottom Controls & Timeline Bar Area */}
-      <div className="relative z-10 p-3 bg-gradient-to-t from-black/95 via-black/70 to-transparent flex flex-col gap-2">
+      <div className="relative z-10 p-3 bg-gradient-to-t from-black/95 via-black/80 to-transparent flex flex-col gap-2">
         
         {/* Barra de Progresso do Vídeo (Linha do Tempo) */}
         <div className="w-full flex items-center gap-1.5">
-          <span className="text-[9px] font-mono text-gray-300 min-w-[24px]">
+          <span className="text-[10px] font-mono text-gray-200 font-bold min-w-[28px]">
             {formatTime(currentTime)}
           </span>
           <div className="relative flex-grow flex items-center">
@@ -146,7 +152,7 @@ const ScrollAudioVideoCard = ({ src }: { src: string }) => {
               }}
             />
           </div>
-          <span className="text-[9px] font-mono text-gray-400 min-w-[24px] text-right">
+          <span className="text-[10px] font-mono text-gray-300 font-bold min-w-[28px] text-right">
             {formatTime(duration)}
           </span>
         </div>
