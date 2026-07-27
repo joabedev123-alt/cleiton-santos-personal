@@ -40,9 +40,9 @@ export const Header = () => {
   }, []);
 
   const languages = [
-    { code: 'PT', name: 'Português', flag: '🇧🇷', googleCode: 'pt' },
-    { code: 'EN', name: 'English', flag: '🇺🇸', googleCode: 'en' },
-    { code: 'ES', name: 'Español', flag: '🇪🇸', googleCode: 'es' },
+    { code: 'PT', name: 'Português', flagUrl: '/flags/br.svg', googleCode: 'pt' },
+    { code: 'EN', name: 'English', flagUrl: '/flags/us.svg', googleCode: 'en' },
+    { code: 'ES', name: 'Español', flagUrl: '/flags/es.svg', googleCode: 'es' },
   ];
 
   const handleLanguageChange = (lang: typeof languages[0]) => {
@@ -70,12 +70,12 @@ export const Header = () => {
   return (
     <>
       {/* HEADER NAVBAR */}
-      <header className="w-full bg-[#0d0d0d] z-50 py-4 px-6 md:px-10 flex justify-between items-center border-b border-brand-gray/10 sticky top-0">
+      <header className="w-full bg-[#0d0d0d] z-50 py-4 px-4 sm:px-6 md:px-10 flex justify-between items-center border-b border-brand-gray/10 sticky top-0">
         
         {/* Logo & Marca */}
-        <Link to="/" className="flex items-center gap-4">
-          <img src="/logo-final.png" alt="Logo Cleiton Santos" className="h-14 md:h-20 w-auto object-contain" />
-          <div className="text-2xl md:text-3xl font-heading text-brand-white uppercase tracking-wider hidden sm:block">
+        <Link to="/" className="flex items-center gap-3 md:gap-4">
+          <img src="/logo-final.png" alt="Logo Cleiton Santos" className="h-12 sm:h-14 md:h-20 w-auto object-contain" />
+          <div className="text-xl sm:text-2xl md:text-3xl font-heading text-brand-white uppercase tracking-wider hidden sm:block">
             Cleiton <span className="text-brand-yellow">Santos</span>
           </div>
         </Link>
@@ -120,37 +120,33 @@ export const Header = () => {
           </Link>
         </nav>
 
-        {/* CTA & Botão Tradutor */}
+        {/* CTA & Botão Tradutor (Desktop) */}
         <div className="hidden md:flex items-center gap-4">
           
-          {/* Botão Tradutor de Idioma */}
+          {/* Botão Tradutor de Idioma (Desktop com Bandeiras) */}
           <div className="relative" ref={dropdownRef}>
             <button 
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="flex items-center gap-2 border border-brand-gray/30 bg-[#161616] text-white px-3 py-2.5 rounded-sm hover:border-brand-yellow transition-all text-xs font-bold uppercase tracking-wider"
               title="Mudar Idioma / Change Language"
             >
-              <Globe size={16} className="text-brand-yellow" />
-              <span>{activeLang.flag} {activeLang.code}</span>
+              <img src={activeLang.flagUrl} alt={activeLang.name} className="w-5 h-3.5 object-cover rounded-[2px]" />
               <ChevronDown size={14} className={`transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Menu Dropdown de Idiomas */}
             {isLangOpen && (
-              <div className="absolute top-full right-0 mt-2 w-40 bg-[#161616] border border-brand-yellow/30 rounded-sm shadow-2xl z-50 py-1">
+              <div className="absolute top-full right-0 mt-2 w-36 bg-[#161616] border border-brand-yellow/30 rounded-sm shadow-2xl z-50 py-1">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => handleLanguageChange(lang)}
-                    className={`w-full text-left px-4 py-2.5 text-xs font-bold flex items-center justify-between hover:bg-brand-yellow hover:text-black transition-colors ${
+                    className={`w-full text-left px-3 py-2 text-xs font-bold flex items-center gap-2.5 hover:bg-brand-yellow hover:text-black transition-colors ${
                       currentLang === lang.code ? 'text-brand-yellow bg-black/40' : 'text-white'
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <span>{lang.flag}</span>
-                      <span>{lang.name}</span>
-                    </span>
-                    <span className="text-[10px] opacity-70">({lang.code})</span>
+                    <img src={lang.flagUrl} alt={lang.name} className="w-5 h-3.5 object-cover rounded-[2px]" />
+                    <span>{lang.name}</span>
                   </button>
                 ))}
               </div>
@@ -168,35 +164,41 @@ export const Header = () => {
           </a>
         </div>
 
-        {/* Botão Mobile */}
-        <button 
-          className="md:hidden text-brand-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Área Mobile: Bandeiras no Navbar + Botão Hambúrguer */}
+        <div className="flex md:hidden items-center gap-3">
+          {/* Bandeiras de Idioma no Nav Bar (Mobile) */}
+          <div className="flex items-center gap-1 bg-[#161616] p-1.5 border border-brand-gray/30 rounded-sm">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageChange(lang)}
+                title={lang.name}
+                aria-label={lang.name}
+                className={`p-1 rounded-sm transition-all duration-200 flex items-center justify-center ${
+                  currentLang === lang.code 
+                    ? 'bg-brand-yellow/20 ring-1 ring-brand-yellow scale-110' 
+                    : 'opacity-50 hover:opacity-100'
+                }`}
+              >
+                <img src={lang.flagUrl} alt={lang.name} className="w-5 h-3.5 object-cover rounded-[2px]" />
+              </button>
+            ))}
+          </div>
+
+          {/* Botão Hambúrguer Mobile */}
+          <button 
+            className="text-brand-white p-1.5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </header>
 
       {/* Menu Mobile Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-[73px] bg-[#0d0d0d] z-40 flex flex-col items-center pt-6 pb-12 md:hidden border-t border-brand-gray/20 overflow-y-auto max-h-[calc(100vh-73px)]">
-          
-          {/* Seletor de Idiomas no Mobile */}
-          <div className="flex items-center gap-2 mb-6 bg-[#161616] p-2 border border-brand-gray/20 rounded-sm w-[90%] justify-center">
-            <Globe size={18} className="text-brand-yellow mr-1" />
-            {languages.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => handleLanguageChange(lang)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-colors ${
-                  currentLang === lang.code ? 'bg-brand-yellow text-black' : 'text-white hover:text-brand-yellow'
-                }`}
-              >
-                {lang.flag} {lang.code}
-              </button>
-            ))}
-          </div>
-
           <nav className="flex flex-col gap-6 items-center text-lg font-bold uppercase tracking-widest w-full px-6">
             <Link 
               to="/" 

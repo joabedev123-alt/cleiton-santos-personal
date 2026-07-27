@@ -5,49 +5,7 @@ import { HeartPulse, ShieldCheck, Activity, UserCheck, Play, X, Image as ImageIc
 export const TreinoIdosos = () => {
   const [activeMediaModal, setActiveMediaModal] = useState<{ type: 'image' | 'video'; src: string; title: string } | null>(null);
 
-  // Lista Completa de Fotos Reais da Pasta cleiton001
-  const fotosIdosos = [
-    { 
-      title: "Fortalecimento & Saúde Articular", 
-      desc: "Exercícios seguros focados na preservação das articulações e joelhos.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
-    },
-    { 
-      title: "Treino de Equilíbrio & Estabilidade", 
-      desc: "Treinamento proprioceptivo para prevenção ativa de quedas.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54 (1).jpeg" 
-    },
-    { 
-      title: "Manutenção de Massa Magra 50+", 
-      desc: "Combate à sarcopenia com carga adaptada às necessidades individuais.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.54.jpeg" 
-    },
-    { 
-      title: "Acompanhamento Individualizado", 
-      desc: "Atenção total à correção técnica e amplitude anatômica.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.25.55.jpeg" 
-    },
-    { 
-      title: "Postura & Alinhamento Corporal", 
-      desc: "Fortalecimento da musculatura do tronco e alívio de dores lombares.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.20.jpeg" 
-    },
-    { 
-      title: "Condicionamento & Vitalidade", 
-      desc: "Estímulo cardiovascular leve para mais disposição diária.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.26.26.jpeg" 
-    },
-    { 
-      title: "Treino Presencial em Riverview FL", 
-      desc: "Atendimento exclusivo e seguro direto na sua região.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24 (1).jpeg" 
-    },
-    { 
-      title: "Evolução & Longevidade Ativa", 
-      desc: "Resultados reais para uma rotina independente e saudável.", 
-      src: "/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24.jpeg" 
-    }
-  ];
+
 
   // Lista Completa de TODOS os 17 Vídeos Reais da Pasta cleiton 001
   const videosIdosos = [
@@ -223,10 +181,12 @@ export const TreinoIdosos = () => {
               onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v1.mp4', title: 'Cleiton Santos Atendimento 50+ (WhatsApp Video 09.36.00)' })}
               className="w-full h-80 sm:h-96 rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black cursor-pointer"
             >
-              <img 
-                src="/images/cleiton001/WhatsApp Image 2026-07-17 at 11.12.24 (1).jpeg" 
-                alt="Cleiton Santos Atendimento 50+" 
-                className="w-full h-full object-cover object-top opacity-50 group-hover:scale-105 transition-transform duration-700" 
+              <video 
+                src="/videos/v1.mp4#t=0.1" 
+                preload="metadata" 
+                muted 
+                playsInline 
+                className="w-full h-full object-contain object-center opacity-80 group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
               />
               
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-between text-center">
@@ -265,19 +225,21 @@ export const TreinoIdosos = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Card com Vídeo Real WhatsApp Video 2026-07-21 at 09.36.16 */}
-          <div className="lg:col-span-5 h-full">
+          <div className="lg:col-span-5 flex justify-center w-full">
             <div 
               onClick={() => setActiveMediaModal({ type: 'video', src: '/videos/v5.mp4', title: 'Treino de Longevidade Cleiton Santos (WhatsApp Video 09.36.16)' })}
-              className="relative rounded-sm overflow-hidden border border-brand-yellow/40 h-full min-h-[350px] shadow-xl group bg-black cursor-pointer"
+              className="w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black cursor-pointer"
             >
-              <img 
-                src="/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
-                alt="Treino de Longevidade Cleiton Santos" 
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+              <video 
+                src="/videos/v5.mp4#t=0.1" 
+                preload="metadata" 
+                muted 
+                playsInline 
+                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-6 flex flex-col justify-between">
-                <span className="bg-brand-yellow text-black font-bold uppercase text-[10px] px-2.5 py-1 tracking-widest rounded-sm w-max shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-6 flex flex-col justify-between text-center">
+                <span className="bg-brand-yellow text-black font-bold uppercase text-[10px] px-3 py-1 tracking-widest rounded-sm self-end shadow-md">
                   Vídeo Pilares 50+
                 </span>
 
@@ -286,8 +248,8 @@ export const TreinoIdosos = () => {
                 </div>
 
                 <div>
-                  <h3 className="font-heading text-2xl text-white uppercase">Preservação & Autonomia</h3>
-                  <p className="text-xs text-gray-200 mt-1 italic">
+                  <h3 className="font-heading text-xl sm:text-2xl text-white uppercase mb-1 tracking-wider">Preservação & Autonomia</h3>
+                  <p className="text-[11px] text-gray-200 italic max-w-xs mx-auto leading-relaxed">
                     Clique para assistir à demonstração da metodologia 50+ (WhatsApp Video 09.36.16)
                   </p>
                 </div>
@@ -342,52 +304,7 @@ export const TreinoIdosos = () => {
         </div>
       </section>
 
-      {/* 3. GALERIA DE FOTOS REAIS DA PASTA CLEITON001 */}
-      <section id="galeria-fotos" className="mb-24">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4 text-center md:text-left">
-          <div>
-            <div className="flex items-center justify-center md:justify-start gap-2 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-1">
-              <ImageIcon size={16} /> Fotos Cleiton 001
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-heading text-brand-white uppercase">
-              Fotos Reais dos <span className="text-brand-yellow">Treinos 50+</span>
-            </h2>
-          </div>
-          <p className="text-gray-400 text-sm max-w-md">
-            Confira as imagens reais dos atendimentos e técnicas de fortalecimento aplicadas com os alunos.
-          </p>
-        </div>
 
-        {/* Grid de Fotos Reais */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {fotosIdosos.map((foto, idx) => (
-            <div 
-              key={idx} 
-              onClick={() => setActiveMediaModal({ type: 'image', src: foto.src, title: foto.title })}
-              className="bg-[#111111] border border-brand-gray/20 rounded-sm overflow-hidden group cursor-pointer hover:border-brand-yellow/60 transition-all shadow-lg flex flex-col"
-            >
-              <div className="h-64 overflow-hidden relative">
-                <img 
-                  src={foto.src} 
-                  alt={foto.title} 
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" 
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                  <span className="bg-brand-yellow text-black font-bold text-xs px-3 py-1.5 uppercase tracking-wider rounded-sm opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
-                    Ampliar Foto
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 flex-grow flex flex-col justify-between">
-                <div>
-                  <h4 className="font-bold text-white text-sm mb-1">{foto.title}</h4>
-                  <p className="text-xs text-gray-400 leading-relaxed">{foto.desc}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* 4. SEÇÃO DEMONSTRAÇÕES EM VÍDEO REAIS DA PASTA CLEITON 001 (17 VÍDEOS) */}
       <section id="secao-videos" className="mb-24 bg-[#111111] border border-brand-gray/20 p-6 sm:p-10 md:p-12 rounded-sm">
@@ -403,32 +320,34 @@ export const TreinoIdosos = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {videosIdosos.map((video) => (
             <div 
               key={video.id}
               onClick={() => setActiveMediaModal({ type: 'video', src: video.videoSrc, title: video.title })}
-              className="relative aspect-square rounded-sm overflow-hidden border border-brand-yellow/30 group cursor-pointer bg-black shadow-xl"
+              className="relative aspect-[9/16] rounded-sm overflow-hidden border-2 border-brand-yellow/30 hover:border-brand-yellow group cursor-pointer bg-black shadow-xl"
             >
-              <img 
-                src={video.thumb} 
-                alt={video.title} 
-                className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500" 
+              <video 
+                src={`${video.videoSrc}#t=0.1`} 
+                preload="metadata"
+                muted 
+                playsInline 
+                className="w-full h-full object-cover object-center opacity-85 group-hover:scale-105 transition-transform duration-500 pointer-events-none" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex flex-col items-center justify-between p-4 text-center">
-                <span className="bg-brand-yellow text-black text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-sm tracking-wider self-end shadow-md">
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col items-center justify-between p-3 sm:p-4 text-center">
+                <span className="bg-brand-yellow text-black text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wider self-end shadow-md">
                   Vídeo {video.id} / 17
                 </span>
                 
-                <div className="w-14 h-14 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition-transform my-auto">
                   <Play size={24} className="ml-1 fill-black" />
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold text-brand-white block mb-1">
+                  <h4 className="text-xs sm:text-sm font-bold text-brand-white block mb-0.5 leading-snug">
                     {video.title}
                   </h4>
-                  <p className="text-[10px] text-gray-300 line-clamp-2">{video.desc}</p>
+                  <p className="text-[10px] text-gray-300 line-clamp-2 leading-tight">{video.desc}</p>
                 </div>
               </div>
             </div>
@@ -505,16 +424,16 @@ export const TreinoIdosos = () => {
                 <p className="text-center text-white text-sm font-bold mt-3">{activeMediaModal.title}</p>
               </div>
             ) : (
-              <div className="w-full aspect-video rounded-sm overflow-hidden border border-brand-yellow/40 bg-black">
+              <div className="bg-[#161616] p-2 sm:p-4 rounded-sm border border-brand-yellow/40 max-w-3xl w-full flex flex-col items-center">
                 <video 
                   src={activeMediaModal.src} 
                   controls 
                   autoPlay 
-                  className="w-full h-full object-contain"
+                  className="max-h-[75vh] max-w-full w-auto h-auto object-contain rounded-sm bg-black"
                 >
                   Seu navegador não suporta a reprodução deste vídeo.
                 </video>
-                <p className="text-center text-white text-sm font-bold p-2 bg-[#161616]">{activeMediaModal.title}</p>
+                <p className="text-center text-white text-sm font-bold mt-3">{activeMediaModal.title}</p>
               </div>
             )}
           </div>
