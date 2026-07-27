@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { CheckCircle2, MapPin, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { CONTACT_INFO } from '../utils/contact';
 
@@ -10,7 +10,24 @@ interface VideoCardProps {
 const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Se o navegador bloquear áudio automático sem clique prévio do usuário, muta como fallback
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            setIsMuted(true);
+            videoRef.current.play().catch(() => {});
+          }
+        });
+      }
+    }
+  }, []);
 
   const togglePlay = () => {
     if (videoRef.current) {
