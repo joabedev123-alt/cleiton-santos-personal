@@ -313,7 +313,7 @@ export const Home = () => {
 
             {/* Componente de Vídeo (video04) ao lado */}
             <div className="lg:col-span-5 flex justify-center w-full">
-              <div className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
+              <div className="w-full max-w-[220px] sm:max-w-[250px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
                 <video 
                   src="/videos/video04.mp4" 
                   autoPlay 
