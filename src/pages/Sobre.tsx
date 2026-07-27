@@ -153,9 +153,9 @@ export const Sobre = () => {
             </ul>
           </div>
 
-          {/* VÍDEO 03 */}
+          {/* VÍDEO 04 */}
           <div className="flex justify-center w-full">
-            <VideoCardWithControls src="/videos/video03.mp4" title="Demonstração em Vídeo" />
+            <VideoCardWithControls src="/videos/video04.mp4" title="Demonstração em Vídeo" />
           </div>
         </div>
 
