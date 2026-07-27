@@ -256,19 +256,39 @@ export const Home = () => {
             Quem treina, <span className="text-brand-yellow">sente a diferença</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-[#1a1a1a] p-8 border border-brand-gray/20">
-                <div className="flex gap-1 text-brand-yellow mb-6">
-                  {[...Array(5)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+            {[
+              {
+                nome: "Eduardo",
+                tag: "Hipertrofia & Força",
+                texto: "O acompanhamento com o Cleiton foi essencial para minha evolução. Em poucos meses ganhei mais massa magra e força do que em anos treinando sem método. Correção técnica impecável!"
+              },
+              {
+                nome: "Vanessa",
+                tag: "Condicionamento & Saúde",
+                texto: "Treinar com o Cleiton mudou minha rotina e disposição. Os treinos são totalmente personalizados e focados em gerar resultados consistentes com máxima segurança."
+              },
+              {
+                nome: "Dona Edy (85 anos)",
+                tag: "Longevidade & Saúde 50+",
+                texto: "Com o trabalho personalizado do Cleiton ganhei mais firmeza nos passos, equilíbrio e autonomia no meu dia a dia. É uma atenção técnica e carinho inestimáveis."
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-[#1a1a1a] p-8 border border-brand-gray/20 rounded-sm flex flex-col justify-between hover:border-brand-yellow/50 transition-colors duration-300">
+                <div>
+                  <div className="flex gap-1 text-brand-yellow mb-6">
+                    {[...Array(5)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+                  </div>
+                  <p className="text-gray-300 italic mb-6 leading-relaxed text-sm sm:text-base">
+                    "{item.texto}"
+                  </p>
                 </div>
-                <p className="text-gray-300 italic mb-6 leading-relaxed">
-                  "O acompanhamento foi essencial. A evolução que tive nos últimos meses foi algo que não consegui em anos treinando sozinho. Correção técnica impecável."
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-brand-grayDark rounded-full"></div>
+                <div className="flex items-center gap-4 pt-4 border-t border-brand-gray/10">
+                  <div className="w-11 h-11 bg-brand-yellow/10 border border-brand-yellow/40 rounded-full flex items-center justify-center text-brand-yellow font-bold text-base shadow-inner">
+                    {item.nome.charAt(0)}
+                  </div>
                   <div>
-                    <h4 className="text-brand-white font-bold uppercase tracking-wider text-sm">Nome do Aluno</h4>
-                    <p className="text-brand-yellow text-xs font-semibold uppercase tracking-widest">Hipertrofia</p>
+                    <h4 className="text-brand-white font-bold uppercase tracking-wider text-sm">{item.nome}</h4>
+                    <p className="text-brand-yellow text-xs font-semibold uppercase tracking-widest">{item.tag}</p>
                   </div>
                 </div>
               </div>
