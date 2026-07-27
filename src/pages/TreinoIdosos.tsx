@@ -7,15 +7,8 @@ export const TreinoIdosos = () => {
 
 
 
-  // Lista Completa de TODOS os 17 Vídeos Reais da Pasta cleiton 001
+  // Lista Completa dos Vídeos Reais da Pasta cleiton 001 (16 Vídeos)
   const videosIdosos = [
-    { 
-      id: 1, 
-      title: "Treino Funcional 01 - Estabilidade & Postura", 
-      desc: "Exercícios práticos de postura e estabilidade funcional.", 
-      videoSrc: "/videos/v1.mp4", 
-      thumb: "/images/cleiton001/WhatsApp Image 2026-07-20 at 12.21.55.jpeg" 
-    },
     { 
       id: 2, 
       title: "Treino Funcional 02 - Mobilidade Articular", 
@@ -306,22 +299,22 @@ export const TreinoIdosos = () => {
 
 
 
-      {/* 4. SEÇÃO DEMONSTRAÇÕES EM VÍDEO REAIS DA PASTA CLEITON 001 (17 VÍDEOS) */}
+      {/* 4. SEÇÃO DEMONSTRAÇÕES EM VÍDEO REAIS DA PASTA CLEITON 001 */}
       <section id="secao-videos" className="mb-24 bg-[#111111] border border-brand-gray/20 p-6 sm:p-10 md:p-12 rounded-sm">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="flex items-center justify-center gap-2 text-brand-yellow text-xs font-bold uppercase tracking-widest mb-1">
-            <Video size={16} /> Vídeos Reais (17) Pasta Cleiton 001
+            <Video size={16} /> Vídeos Reais ({videosIdosos.length}) Pasta Cleiton 001
           </div>
           <h2 className="text-3xl sm:text-4xl font-heading text-brand-white uppercase mb-2">
             Demonstrações em Vídeo das Aulas
           </h2>
           <p className="text-gray-400 text-sm">
-            Assista a todos os 17 vídeos originais da pasta cleiton 001 com a aplicação prática das técnicas de mobilidade, equilíbrio e exercícios de força.
+            Assista a todos os {videosIdosos.length} vídeos originais da pasta cleiton 001 com a aplicação prática das técnicas de mobilidade, equilíbrio e exercícios de força.
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {videosIdosos.map((video) => (
+          {videosIdosos.map((video, index) => (
             <div 
               key={video.id}
               onClick={() => setActiveMediaModal({ type: 'video', src: video.videoSrc, title: video.title })}
@@ -336,7 +329,7 @@ export const TreinoIdosos = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col items-center justify-between p-3 sm:p-4 text-center">
                 <span className="bg-brand-yellow text-black text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wider self-end shadow-md">
-                  Vídeo {video.id} / 17
+                  Vídeo {index + 1} / {videosIdosos.length}
                 </span>
                 
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-yellow text-black flex items-center justify-center text-xl font-bold shadow-2xl group-hover:scale-110 transition-transform my-auto">
