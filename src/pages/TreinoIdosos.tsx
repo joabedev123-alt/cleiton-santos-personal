@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
-import { HeartPulse, ShieldCheck, Activity, UserCheck, Play, X, Image as ImageIcon, Video, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
+import { HeartPulse, ShieldCheck, Activity, UserCheck, Play, X, Video, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
 
 export const TreinoIdosos = () => {
   const [activeMediaModal, setActiveMediaModal] = useState<{ type: 'image' | 'video'; src: string; title: string } | null>(null);

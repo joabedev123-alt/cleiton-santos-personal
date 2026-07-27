@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
 
