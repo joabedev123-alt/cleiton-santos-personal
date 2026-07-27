@@ -8,25 +8,55 @@ interface VideoCardProps {
 }
 
 const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = false;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Se o navegador bloquear áudio automático sem clique prévio do usuário, muta como fallback
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
           if (videoRef.current) {
-            videoRef.current.muted = true;
-            setIsMuted(true);
-            videoRef.current.play().catch(() => {});
+            if (entry.isIntersecting) {
+              // Quando o vídeo entra na tela via scroll do usuário
+              videoRef.current.muted = false;
+              setIsMuted(false);
+              const playPromise = videoRef.current.play();
+              if (playPromise !== undefined) {
+                playPromise
+                  .then(() => {
+                    setIsPlaying(true);
+                  })
+                  .catch(() => {
+                    // Fallback se o navegador exigir interação prévia do usuário para áudio
+                    if (videoRef.current) {
+                      videoRef.current.muted = true;
+                      setIsMuted(true);
+                      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+                    }
+                  });
+              }
+            } else {
+              // Quando o vídeo sai da tela (evita 2 áudios ao mesmo tempo)
+              videoRef.current.pause();
+              videoRef.current.muted = true;
+              setIsMuted(true);
+              setIsPlaying(false);
+            }
           }
         });
-      }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const togglePlay = () => {
@@ -35,8 +65,10 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
         videoRef.current.pause();
         setIsPlaying(false);
       } else {
-        videoRef.current.play();
-        setIsPlaying(true);
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => setIsPlaying(true)).catch(() => {});
+        }
       }
     }
   };
@@ -49,12 +81,13 @@ const VideoCardWithControls = ({ src, title }: VideoCardProps) => {
   };
 
   return (
-    <div className="bg-black w-full max-w-[320px] sm:max-w-[360px] mx-auto aspect-[9/16] rounded-sm border-2 border-brand-yellow/30 relative overflow-hidden group shadow-2xl flex flex-col justify-between">
+    <div
+      ref={containerRef}
+      className="bg-black w-full max-w-[320px] sm:max-w-[360px] mx-auto aspect-[9/16] rounded-sm border-2 border-brand-yellow/30 relative overflow-hidden group shadow-2xl flex flex-col justify-between"
+    >
       <video
         ref={videoRef}
         src={src}
-        autoPlay
-        muted={isMuted}
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-contain bg-black object-center z-0"
