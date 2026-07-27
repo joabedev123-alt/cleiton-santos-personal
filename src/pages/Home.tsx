@@ -1,9 +1,83 @@
 
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Target, Dumbbell, Activity, Users, Star, MapPin } from 'lucide-react';
+import { Target, Dumbbell, Activity, Users, Star, MapPin, Volume2, VolumeX } from 'lucide-react';
 import { VideoCarousel } from '../components/VideoCarousel';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO, getWhatsAppLink, SERVICE_MESSAGES } from '../utils/contact';
+
+const ScrollAudioVideoCard = ({ src }: { src: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (videoRef.current) {
+            if (entry.isIntersecting) {
+              videoRef.current.muted = false;
+              setIsMuted(false);
+              const playPromise = videoRef.current.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                  if (videoRef.current) {
+                    videoRef.current.muted = true;
+                    setIsMuted(true);
+                    videoRef.current.play().catch(() => {});
+                  }
+                });
+              }
+            } else {
+              videoRef.current.pause();
+              videoRef.current.muted = true;
+              setIsMuted(true);
+            }
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="w-full max-w-[220px] sm:max-w-[250px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
+      <video 
+        ref={videoRef}
+        src={src} 
+        loop 
+        playsInline 
+        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+      
+      {/* Botão de Mute / Unmute */}
+      <button
+        onClick={toggleMute}
+        aria-label={isMuted ? "Ativar som" : "Desativar som"}
+        className="absolute bottom-3 right-3 z-10 bg-black/80 text-white border border-brand-yellow/50 p-2.5 rounded-full hover:border-brand-yellow hover:text-brand-yellow transition-all duration-200 shadow-xl flex items-center justify-center cursor-pointer touch-manipulation"
+      >
+        {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} className="text-brand-yellow" />}
+      </button>
+    </div>
+  );
+};
 
 export const Home = () => {
   return (
@@ -331,19 +405,9 @@ export const Home = () => {
               </div>
             </div>
 
-            {/* Componente de Vídeo (video04) ao lado */}
+            {/* Componente de Vídeo (video04) com Áudio no Scroll */}
             <div className="lg:col-span-5 flex justify-center w-full">
-              <div className="w-full max-w-[220px] sm:max-w-[250px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
-                <video 
-                  src="/videos/video04.mp4" 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline 
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              </div>
+              <ScrollAudioVideoCard src="/videos/video04.mp4" />
             </div>
 
           </div>
