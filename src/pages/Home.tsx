@@ -278,31 +278,54 @@ export const Home = () => {
       </section>
 
 
-      {/* 10. CALL TO ACTION FINAL */}
-      <section className="py-24 sm:py-32 bg-[#111111] border-t border-brand-gray/20 relative overflow-hidden">
+      {/* 10. CALL TO ACTION FINAL COM VÍDEO 04 */}
+      <section className="py-20 md:py-28 bg-[#111111] border-t border-brand-gray/20 relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-darker opacity-80 z-0"></div>
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-heading text-brand-white uppercase mb-8">
-            Seu próximo nível começa com <br/><span className="text-brand-yellow">uma decisão</span>
-          </h2>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tenha um plano construído para o seu objetivo e acompanhamento profissional em cada etapa da sua evolução.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-brand-yellow text-black px-10 py-5 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-base sm:text-lg rounded-sm shadow-xl"
-            >
-              Falar com Cleiton
-            </a>
-            <Link 
-              to="/servicos" 
-              className="border border-brand-white text-brand-white px-10 py-5 font-bold hover:bg-brand-white hover:text-black transition-all uppercase tracking-wider text-base sm:text-lg rounded-sm"
-            >
-              Conhecer os Planos
-            </Link>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
+            
+            {/* Texto & Botões CTA */}
+            <div className="lg:col-span-7 text-center lg:text-left">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-brand-white uppercase mb-6 leading-tight">
+                Seu próximo nível começa com <br className="hidden sm:inline" />
+                <span className="text-brand-yellow">uma decisão</span>
+              </h2>
+              <p className="text-gray-300 text-base md:text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                Tenha um plano construído para o seu objetivo e acompanhamento profissional em cada etapa da sua evolução.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a 
+                  href={getWhatsAppLink(SERVICE_MESSAGES.general)} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-brand-yellow text-black px-8 py-4 font-bold hover:bg-brand-yellowLight transition-all uppercase tracking-wider text-base rounded-sm shadow-xl"
+                >
+                  Falar com Cleiton
+                </a>
+                <Link 
+                  to="/servicos" 
+                  className="border border-brand-white text-brand-white px-8 py-4 font-bold hover:bg-brand-white hover:text-black transition-all uppercase tracking-wider text-base rounded-sm"
+                >
+                  Conhecer os Planos
+                </Link>
+              </div>
+            </div>
+
+            {/* Componente de Vídeo (video04) ao lado */}
+            <div className="lg:col-span-5 flex justify-center w-full">
+              <div className="w-full max-w-[320px] sm:max-w-[350px] aspect-[9/16] rounded-sm border-2 border-brand-yellow/50 overflow-hidden relative group shadow-2xl bg-black">
+                <video 
+                  src="/videos/video04.mp4" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
